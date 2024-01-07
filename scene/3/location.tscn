@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://go3djoslxcbd"]
+
+[ext_resource type="Script" path="res://scene/3/location.gd" id="1_56eiu"]
+[ext_resource type="PackedScene" uid="uid://ciw38iqel0v5a" path="res://scene/0/icon.tscn" id="2_s40wu"]
+[ext_resource type="PackedScene" uid="uid://dqhed4vxqlh5p" path="res://scene/3/frontier.tscn" id="3_fodnb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
+
+[node name="Location" type="MarginContainer"]
+custom_minimum_size = Vector2(5, 5)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_56eiu")
+
+[node name="BG" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
+
+[node name="Index" parent="." instance=ExtResource("2_s40wu")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Up" parent="." instance=ExtResource("3_fodnb")]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Right" parent="." instance=ExtResource("3_fodnb")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Down" parent="." instance=ExtResource("3_fodnb")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Left" parent="." instance=ExtResource("3_fodnb")]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Markers" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2

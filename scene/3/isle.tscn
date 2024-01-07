@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://cesqk6ekpivko"]
+
+[ext_resource type="Script" path="res://scene/3/isle.gd" id="1_mop8t"]
+[ext_resource type="PackedScene" uid="uid://dhfc622s1126i" path="res://scene/4/queue.tscn" id="2_r5x4s"]
+[ext_resource type="PackedScene" uid="uid://hetf20d6go8n" path="res://scene/4/encounter.tscn" id="3_2vasw"]
+[ext_resource type="PackedScene" uid="uid://db27pafnuan3r" path="res://scene/4/podium.tscn" id="4_5jbtg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
+
+[node name="Isle" type="MarginContainer"]
+custom_minimum_size = Vector2(5, 5)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_mop8t")
+
+[node name="BG" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Squads" type="VBoxContainer" parent="VBox/HBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Queue" parent="VBox/HBox" instance=ExtResource("2_r5x4s")]
+layout_mode = 2
+
+[node name="Locations" type="GridContainer" parent="VBox/HBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="Aisles" type="VBoxContainer" parent="VBox/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Undersides" type="VBoxContainer" parent="VBox/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Travelers" type="VBoxContainer" parent="VBox/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Regions" type="VBoxContainer" parent="VBox/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Towers" type="VBoxContainer" parent="VBox/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Encounter" parent="VBox" instance=ExtResource("3_2vasw")]
+visible = false
+layout_mode = 2
+
+[node name="Podium" parent="VBox" instance=ExtResource("4_5jbtg")]
+visible = false
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
