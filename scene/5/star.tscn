@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnaqjevdriwhu"]
+
+[ext_resource type="Script" path="res://scene/5/star.gd" id="1_7dvy2"]
+[ext_resource type="PackedScene" uid="uid://ciw38iqel0v5a" path="res://scene/0/icon.tscn" id="2_4irvf"]
+
+[node name="Star" type="Polygon2D"]
+script = ExtResource("1_7dvy2")
+
+[node name="Index" parent="." instance=ExtResource("2_4irvf")]
+visible = false

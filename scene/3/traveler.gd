@@ -105,9 +105,9 @@ func roll_direction() -> void:
 		input.type = "triangle"
 		input.subtype = _direction
 		
-		var icon = get(_direction)
-		icon.set_attributes(input)
-		icon.custom_minimum_size = Vector2(Global.vec.size.sixteen)
+		var _icon = get(_direction)
+		_icon.set_attributes(input)
+		_icon.custom_minimum_size = Vector2(Global.vec.size.sixteen)
 	
 	var _index = route.find(step)
 	

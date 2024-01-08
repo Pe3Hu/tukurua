@@ -42,16 +42,28 @@ func init_num() -> void:
 	num.index.tower = 0
 	num.index.region = 0
 	num.index.member = 0
+	num.index.star = 0
+	num.index.cord = 0
+	num.index.block = 0
+	
 	
 	num.size = {}
 	num.size.isle = 13
 	num.size.region = 3
+	num.size.hex = 6
+	
+	num.star = {}
+	num.star.a = 5
+	
+	num.cord = {}
+	num.cord.l = 60
 
 
 func init_dict() -> void:
 	init_neighbor()
 	init_labyrinth()
 	init_card()
+	init_corner()
 
 
 func init_neighbor() -> void:
@@ -97,6 +109,16 @@ func init_neighbor() -> void:
 			Vector2(-1, 0),
 			Vector2( 0,-1)
 		]
+	]
+	
+	dict.coordinates = {}
+	dict.coordinates.cube = [
+		Vector3(1, 0, -1),
+		Vector3(1, -1, 0),
+		Vector3(0, -1, 1),
+		Vector3(-1, 0, 1),
+		Vector3(-1, 1, 0),
+		Vector3(0, 1, -1)
 	]
 
 
@@ -157,6 +179,32 @@ func init_card() -> void:
 		dict.card.count[rank] = arr.rank.front() + arr.rank.back() - rank
 
 
+func init_corner() -> void:
+	dict.order = {}
+	dict.order.pair = {}
+	dict.order.pair["even"] = "odd"
+	dict.order.pair["odd"] = "even"
+	var corners = [3,4,6]
+	dict.corner = {}
+	dict.corner.vector = {}
+	
+	for corners_ in corners:
+		dict.corner.vector[corners_] = {}
+		dict.corner.vector[corners_].even = {}
+		
+		for order_ in dict.order.pair.keys():
+			dict.corner.vector[corners_][order_] = {}
+		
+			for _i in corners_:
+				var angle = 2 * PI * _i / corners_ - PI / 2
+				
+				if order_ == "odd":
+					angle += PI/corners_
+				
+				var vertex = Vector2(1,0).rotated(angle)
+				dict.corner.vector[corners_][order_][_i] = vertex
+
+
 func init_emptyjson() -> void:
 	dict.emptyjson = {}
 	dict.emptyjson.title = {}
@@ -192,6 +240,10 @@ func init_scene() -> void:
 	scene.traveler = load("res://scene/3/traveler.tscn")
 	scene.region = load("res://scene/3/region.tscn")
 	scene.tower = load("res://scene/3/tower.tscn")
+	
+	scene.star = load("res://scene/5/star.tscn")
+	scene.cord = load("res://scene/5/cord.tscn")
+	scene.block = load("res://scene/5/block.tscn")
 
 
 func init_vec():
@@ -214,6 +266,8 @@ func init_vec():
 	vec.size.essence = Vector2(16, 16) * 2
 	vec.size.trigger = Vector2(16, 16) * 2
 	vec.size.place = Vector2(16, 16) * 1.5
+	
+	vec.size.sky = Vector2(400, 400)
 	
 	init_window_size()
 

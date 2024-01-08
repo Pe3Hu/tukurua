@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cotwofa67w16k"]
+
+[ext_resource type="Script" path="res://scene/5/cord.gd" id="1_1j4ch"]
+[ext_resource type="PackedScene" uid="uid://ciw38iqel0v5a" path="res://scene/0/icon.tscn" id="2_g84ux"]
+
+[node name="Cord" type="Line2D"]
+width = 2.0
+script = ExtResource("1_1j4ch")
+
+[node name="Index" parent="." instance=ExtResource("2_g84ux")]
+visible = false
