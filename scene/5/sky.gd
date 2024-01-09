@@ -5,10 +5,12 @@ extends MarginContainer
 @onready var stars = $Stars
 @onready var cords = $Cords
 @onready var blocks = $Blocks
+@onready var constellations = $Constellations
 
 var isle = null
 var center = null
 var grids = {}
+var rings = {}
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -24,6 +26,7 @@ func init_basic_setting() -> void:
 	init_stars()
 	init_cords()
 	init_blocks()
+	init_constellations()
 
 
 func init_stars() -> void:
@@ -107,6 +110,8 @@ func add_cord(first_: Polygon2D, second_: Polygon2D, direction_: Vector3) -> voi
 func init_blocks() -> void:
 	grids.block = {}
 	blocks.position = center
+	rings.block = {}
+	rings.block[1] = []
 	
 	for star in stars.get_children():
 		for _i in Global.num.size.hex:
@@ -145,6 +150,14 @@ func add_block(stars_: Array) -> void:
 		var block = Global.scene.block.instantiate()
 		blocks.add_child(block)
 		block.set_attributes(input)
+		
+		var ring = rings.block.keys().back()
+		var l = Global.num.size.hex * (ring * 2 - 1)
+		rings.block[ring].append(block)
+		block.ring = ring
+		
+		if rings.block[ring].size() == l:
+			rings.block[ring + 1] = []
 
 
 func init_blocks_neighbors() -> void:
@@ -156,10 +169,64 @@ func init_blocks_neighbors() -> void:
 				var block = cord.blocks.keys()[_i]
 				var neighbor = cord.blocks.keys()[(_i + 1) % n]
 				block.neighbors[neighbor] = cord
+
+
+func init_constellations() -> void:
+	var grid = Vector3(5, -7, 2)
+	var block = grids.block[grid]
+	var blocks = [block]
 	
-	#var grid = Vector3(5, -7, 2)
-	#var block = grids.block[grid]
-	#
-	#for neighbor in block.neighbors:
+	for neighbor in block.neighbors:
 		#neighbor.visible = false
-		#print(neighbor.grid)
+		#neighbor.color = Color.DIM_GRAY
+		blocks.append(neighbor)
+	
+	for _i in 3:
+		var dimensions = 6
+		add_constellation(dimensions)
+
+
+func add_constellation(dimensions_: int) -> void:
+	var input = {}
+	input.sky = self
+	input.blocks = []
+	
+	for _i in dimensions_:
+		var options = fill_block_options(input.blocks)
+		var block = Global.get_random_key(options)
+		input.blocks.append(block)
+	
+	var constellation = Global.scene.constellation.instantiate()
+	constellations.add_child(constellation)
+	constellation.set_attributes(input)
+
+
+func fill_block_options(blocks_: Array) -> Dictionary:
+	var options = {}
+	var neighbors = []
+	var weight = rings.block.keys().back() + 1
+	
+	if !blocks_.is_empty():
+		for block in blocks_:
+			for neighbor in block.neighbors:
+				if neighbor.status == "freely" and !neighbors.has(neighbor) and !blocks_.has(neighbor):
+					neighbors.append(neighbor)
+	else:
+		#neighbors.append_array(blocks.get_children())
+		
+		for ring in rings.block:
+			for block in rings.block[ring]:
+				if block.status == "freely":
+					neighbors.append(block)
+			
+			if !neighbors.is_empty():
+				break
+	
+	for neighbor in neighbors:
+		options[neighbor] = weight - neighbor.ring
+	#for ring in rings.block:
+		#for block in rings.block[ring]:
+			#if neighbors.has(block):
+				#options.append(block)
+	
+	return options

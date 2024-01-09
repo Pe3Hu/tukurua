@@ -30,3 +30,6 @@ position = Vector2(10, 0)
 
 [node name="Stars" type="Node2D" parent="."]
 position = Vector2(10, 0)
+
+[node name="Constellations" type="Node2D" parent="."]
+position = Vector2(10, 0)

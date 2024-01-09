@@ -7,7 +7,11 @@ var sky = null
 var grid = null
 var neighbors = {}
 var cords = {}
+var blocks = []
 var directions = {}
+var constellations = []
+var status = null
+var temperature = null
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -22,6 +26,8 @@ func init_basic_setting() -> void:
 	sky.grids.star[grid] = self
 	set_vertexs()
 	init_index()
+	set_status("freely")
+	temperature = "cold"
 
 
 func set_vertexs() -> void:
@@ -35,7 +41,6 @@ func set_vertexs() -> void:
 		vertexs.append(vertex)
 	
 	set_polygon(vertexs)
-	paint_gold()
 
 
 func init_index() -> void:
@@ -46,9 +51,18 @@ func init_index() -> void:
 	Global.num.index.star += 1
 
 
-func paint_black() -> void:
-	color = Color.BLACK
+func add_constellation(constellation_: Polygon2D) -> void:
+	constellations.append(constellation_)
+	
+	set_status("occupied")
 
 
-func paint_gold() -> void:
-	color = Color.GOLD
+func set_status(status_: String) -> void:
+	if status != status_:
+		status = status_
+		
+		paint_to_match()
+
+
+func paint_to_match() -> void:
+	color = Global.color.star[status]

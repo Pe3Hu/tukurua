@@ -7,6 +7,8 @@ var sky = null
 var stars = {}
 var blocks = {}
 var foundations = {}
+var kind = null
+var status = null
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -42,14 +44,6 @@ func set_vertexs() -> void:
 	index.position.y -= index.custom_minimum_size.y * 0.5
 
 
-func paint_black() -> void:
-	default_color = Color.BLACK
-
-
-func paint_white() -> void:
-	default_color = Color.WHITE
-
-
 func get_another_star(star_: Polygon2D) -> Variant:
 	if stars.has(star_):
 		for star in stars:
@@ -57,3 +51,18 @@ func get_another_star(star_: Polygon2D) -> Variant:
 				return star
 	
 	return null
+
+
+func set_kind(kind_: String) -> void:
+	kind = kind_
+	status = "cold"
+	
+	paint_to_match()
+
+
+func paint_to_match() -> void:
+	match status:
+		"cold":
+			default_color = Global.color.cord[kind]
+		"heat":
+			default_color = Global.color.cord[status]

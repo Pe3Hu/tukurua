@@ -31,6 +31,8 @@ func init_arr() -> void:
 	arr.portal = ["frontier", "trap"]
 	arr.scenery = ["forest of life", "field of death", "sea of souls"]
 	arr.tower = ["harmony", "life", "death", "souls"]
+	arr.content = ["decor", "cover"]
+	arr.temperature = ["cold", "heat"]
 
 
 func init_num() -> void:
@@ -244,6 +246,8 @@ func init_scene() -> void:
 	scene.star = load("res://scene/5/star.tscn")
 	scene.cord = load("res://scene/5/cord.tscn")
 	scene.block = load("res://scene/5/block.tscn")
+	
+	scene.constellation = load("res://scene/6/constellation.tscn")
 
 
 func init_vec():
@@ -312,6 +316,25 @@ func init_color():
 	color.tower["death"] = Color.from_hsv(120 / h, 0.6, 0.7)
 	color.tower["souls"] = Color.from_hsv(60 / h, 0.6, 0.7)
 	color.tower["harmony"] = Color.from_hsv(270 / h, 0.6, 0.7)
+	
+	color.cord = {}
+	color.cord.decor = Color.from_hsv(120 / h, 0.9, 0.7)
+	color.cord.cover = Color.from_hsv(210 / h, 0.9, 0.7)
+	color.cord.heat = Color.from_hsv(0 / h, 0.9, 0.7)
+	
+	color.block = {}
+	color.block.decor = Color.from_hsv(120 / h, 0.8, 0.4)
+	color.block.cover = Color.from_hsv(210 / h, 0.8, 0.4)
+	color.block.insulation = Color.from_hsv(270 / h, 0.8, 0.4)
+	color.block.freely = Color.from_hsv(0 / h, 0.0, 0.9)
+	
+	color.star = {}
+	color.star.occupied = Color.from_hsv(60 / h, 0.9, 0.9)
+	color.star.freely = Color.from_hsv(30 / h, 0.9, 0.9)
+	color.star.insulation = Color.from_hsv(270 / h, 0.9, 0.9)
+	
+	color.star.cold = Color.from_hsv(150 / h, 0.9, 0.7)
+	color.star.heat = Color.from_hsv(0 / h, 0.9, 0.7)
 
 
 func save(path_: String, data_: String):
