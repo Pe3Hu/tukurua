@@ -324,6 +324,10 @@ func init_vec():
 	vec.size.bar = Vector2(32, 16)
 	vec.size.damage = Vector2(32, 32)
 	
+	vec.size.state = Vector2(100, 12)
+	vec.size.tick = Vector2(5, 12)
+	vec.size.stage = Vector2(vec.size.tick)
+	
 	init_window_size()
 
 
@@ -399,6 +403,10 @@ func init_color():
 	color.role.damager = Color.from_hsv(270 / h, 0.9, 0.9)
 	color.role.charger = Color.from_hsv(30 / h, 0.9, 0.9)
 	color.role.repairer = Color.from_hsv(120 / h, 0.9, 0.9)
+	
+	color.flow = {}
+	color.flow.consumer = Color.from_hsv(300 / h, 0.9, 0.9)
+	color.flow.supplier = Color.from_hsv(90 / h, 0.9, 0.9)
 
 
 func save(path_: String, data_: String):

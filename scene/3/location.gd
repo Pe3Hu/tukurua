@@ -58,9 +58,9 @@ func init_tower() -> void:
 		input.isle = isle
 		input.location = self
 		
-		var tower = Global.scene.tower.instantiate()
-		isle.towers.add_child(tower)
-		tower.set_attributes(input)
+		var _tower = Global.scene.tower.instantiate()
+		isle.towers.add_child(_tower)
+		_tower.set_attributes(input)
 
 
 func set_frontiers() -> void:
@@ -164,10 +164,10 @@ func set_underside() -> void:
 func choose_tower() -> void:
 	var datas = []
 	
-	for tower in isle.towers.get_children():
+	for _tower in isle.towers.get_children():
 		var data = {}
-		data.tower = tower
-		data.distance = tower.location.grid.distance_to(grid)
+		data.tower = _tower
+		data.distance = _tower.location.grid.distance_to(grid)
 		datas.append(data)
 	
 	datas.sort_custom(func(a, b): return a.distance < b.distance)

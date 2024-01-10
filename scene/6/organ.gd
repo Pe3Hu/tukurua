@@ -97,6 +97,6 @@ func organs_oversubscribe() -> void:
 		var organs = get(organ+"s")
 		
 		for _i in range(organs.size()-1,-1-1):
-			var block = organs[_i]
-			organs.erase(block)
-			organs.append(block.organ)
+			var _block = organs[_i]
+			organs.erase(_block)
+			organs.append(_block.organ)

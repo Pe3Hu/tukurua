@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv5qkmd5pg33l"]
+[gd_scene load_steps=5 format=3 uid="uid://cv5qkmd5pg33l"]
 
 [ext_resource type="PackedScene" uid="uid://bqlwa55pi1gab" path="res://scene/5/sky.tscn" id="1_lj7iv"]
 [ext_resource type="Script" path="res://scene/5/vastness.gd" id="1_q3gni"]
+[ext_resource type="PackedScene" uid="uid://bk0d0r81u31q3" path="res://scene/7/river.tscn" id="3_0j5ui"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -41,3 +42,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
+
+[node name="River" parent="VBox" instance=ExtResource("3_0j5ui")]
+layout_mode = 2

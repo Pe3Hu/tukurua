@@ -171,15 +171,6 @@ func init_blocks_neighbors() -> void:
 
 
 func init_constellations() -> void:
-	var grid = Vector3(5, -7, 2)
-	var block = grids.block[grid]
-	var blocks = [block]
-	
-	for neighbor in block.neighbors:
-		#neighbor.visible = false
-		#neighbor.color = Color.DIM_GRAY
-		blocks.append(neighbor)
-	
 	for _i in 3:
 		var dimensions = 6
 		add_constellation(dimensions)
