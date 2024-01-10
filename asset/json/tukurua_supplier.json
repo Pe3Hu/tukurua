@@ -1,0 +1,79 @@
+[
+ {
+  "index": 1,
+  "suppliers": 0,
+  "consumers": 1,
+  "role": "charger",
+  "energy": 4,
+  "impact": 4,
+  "temp": 6,
+  "health": 100,
+  "ratio": 1
+ },
+ {
+  "index": 2,
+  "suppliers": 0,
+  "consumers": 2,
+  "role": "charger",
+  "energy": 7,
+  "impact": 7,
+  "temp": 8,
+  "health": 100,
+  "ratio": 1
+ },
+ {
+  "index": 3,
+  "suppliers": 0,
+  "consumers": 3,
+  "role": "charger",
+  "energy": 10,
+  "impact": 10,
+  "temp": 10,
+  "health": 100,
+  "ratio": 1
+ },
+ {
+  "index": 4,
+  "suppliers": 1,
+  "consumers": 1,
+  "role": "charger",
+  "energy": 20,
+  "impact": 20,
+  "temp": 20,
+  "health": 100,
+  "ratio": 1
+ },
+ {
+  "index": 5,
+  "suppliers": 1,
+  "consumers": 2,
+  "role": "charger",
+  "energy": 15,
+  "impact": 15,
+  "temp": 15,
+  "health": 100,
+  "ratio": 1
+ },
+ {
+  "index": 6,
+  "suppliers": 2,
+  "consumers": 0,
+  "role": "repairer",
+  "energy": 12,
+  "impact": 12,
+  "temp": 12,
+  "health": 100,
+  "ratio": 1
+ },
+ {
+  "index": 7,
+  "suppliers": 2,
+  "consumers": 1,
+  "role": "charger",
+  "energy": 30,
+  "impact": 30,
+  "temp": 30,
+  "health": 100,
+  "ratio": 1
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "index": 0,
+  "role": "damager",
+  "energy": 30,
+  "impact": 75,
+  "health": 130,
+  "ratio": 2.5
+ },
+ {
+  "index": 1,
+  "role": "damager",
+  "energy": 20,
+  "impact": 60,
+  "health": 110,
+  "ratio": 3
+ },
+ {
+  "index": 2,
+  "role": "damager",
+  "energy": 15,
+  "impact": 52.5,
+  "health": 90,
+  "ratio": 3.5
+ },
+ {
+  "index": 3,
+  "role": "damager",
+  "energy": 10,
+  "impact": 40,
+  "health": 70,
+  "ratio": 4
+ }
+]

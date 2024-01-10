@@ -33,6 +33,8 @@ func init_arr() -> void:
 	arr.tower = ["harmony", "life", "death", "souls"]
 	arr.content = ["decor", "cover"]
 	arr.temperature = ["cold", "heat"]
+	arr.indicator = ["health", "energy"]
+	arr.organ = ["supplier", "consumer"]
 
 
 func init_num() -> void:
@@ -47,6 +49,8 @@ func init_num() -> void:
 	num.index.star = 0
 	num.index.cord = 0
 	num.index.block = 0
+	num.index.constellation = 0
+	num.index.organ = 0
 	
 	
 	num.size = {}
@@ -66,6 +70,13 @@ func init_dict() -> void:
 	init_labyrinth()
 	init_card()
 	init_corner()
+	init_supplier()
+	init_consumer()
+	
+	dict.block = {}
+	dict.block.organ = {}
+	dict.block.organ["decor"] = "supplier"
+	dict.block.organ["cover"] = "consumer"
 
 
 func init_neighbor() -> void:
@@ -207,21 +218,59 @@ func init_corner() -> void:
 				dict.corner.vector[corners_][order_][_i] = vertex
 
 
-func init_emptyjson() -> void:
-	dict.emptyjson = {}
-	dict.emptyjson.title = {}
+func init_supplier() -> void:
+	dict.supplier = {}
+	dict.supplier.index = {}
+	dict.supplier.neighbors = {}
 	
-	var path = "res://asset/json/.json"
+	var path = "res://asset/json/tukurua_supplier.json"
 	var array = load_data(path)
 	
-	for emptyjson in array:
+	for supplier in array:
+		supplier.index = int(supplier.index)
+		supplier.suppliers = int(supplier.suppliers)
+		supplier.consumers = int(supplier.consumers)
 		var data = {}
 		
-		for key in emptyjson:
-			if key != "title":
-				data[key] = emptyjson[key]
+		for key in supplier:
+			if key != "index":
+				data[key] = supplier[key]
 		
-		dict.emptyjson.title[emptyjson.title] = data
+		dict.supplier.index[supplier.index] = data
+		
+		if !dict.supplier.neighbors.has(supplier.suppliers):
+			dict.supplier.neighbors[supplier.suppliers] = {}
+		
+		dict.supplier.neighbors[supplier.suppliers][supplier.consumers] = supplier.index
+	
+	dict.supplier.consumer = {}
+	dict.supplier.consumer[1] = {}
+	dict.supplier.consumer[1][0] = 3
+	dict.supplier.consumer[1][1] = 2
+	dict.supplier.consumer[2] = {}
+	dict.supplier.consumer[2][1] = 1
+	dict.supplier.consumer[2][2] = 1
+	dict.supplier.consumer[3] = {}
+	dict.supplier.consumer[3][2] = 2
+	dict.supplier.consumer[3][3] = 3
+
+
+func init_consumer() -> void:
+	dict.consumer = {}
+	dict.consumer.index = {}
+	
+	var path = "res://asset/json/tukurua_consumer.json"
+	var array = load_data(path)
+	
+	for consumer in array:
+		consumer.index = int(consumer.index)
+		var data = {}
+		
+		for key in consumer:
+			if key != "index":
+				data[key] = consumer[key]
+		
+		dict.consumer.index[consumer.index] = data
 
 
 func init_node() -> void:
@@ -248,6 +297,7 @@ func init_scene() -> void:
 	scene.block = load("res://scene/5/block.tscn")
 	
 	scene.constellation = load("res://scene/6/constellation.tscn")
+	scene.organ = load("res://scene/6/organ.tscn")
 
 
 func init_vec():
@@ -260,7 +310,6 @@ func init_vec():
 	vec.size.suit = Vector2(32, 32)
 	vec.size.rank = Vector2(vec.size.sixteen)
 	vec.size.box = Vector2(100, 100)
-	vec.size.bar = Vector2(120, 12)
 	
 	vec.size.location = Vector2(60, 60)
 	vec.size.scheme = Vector2(900, 700)
@@ -272,6 +321,8 @@ func init_vec():
 	vec.size.place = Vector2(16, 16) * 1.5
 	
 	vec.size.sky = Vector2(400, 400)
+	vec.size.bar = Vector2(32, 16)
+	vec.size.damage = Vector2(32, 32)
 	
 	init_window_size()
 
@@ -335,6 +386,19 @@ func init_color():
 	
 	color.star.cold = Color.from_hsv(150 / h, 0.9, 0.7)
 	color.star.heat = Color.from_hsv(0 / h, 0.9, 0.7)
+	
+	color.indicator = {}
+	color.indicator.health = {}
+	color.indicator.health.fill = Color.from_hsv(0, 0.9, 0.7)
+	color.indicator.health.background = Color.from_hsv(0, 0.5, 0.9)
+	color.indicator.energy = {}
+	color.indicator.energy.fill = Color.from_hsv(60 / h, 0.9, 0.7)
+	color.indicator.energy.background = Color.from_hsv(60 / h, 0.5, 0.9)
+	
+	color.role = {}
+	color.role.damager = Color.from_hsv(270 / h, 0.9, 0.9)
+	color.role.charger = Color.from_hsv(30 / h, 0.9, 0.9)
+	color.role.repairer = Color.from_hsv(120 / h, 0.9, 0.9)
 
 
 func save(path_: String, data_: String):

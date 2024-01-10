@@ -5,16 +5,15 @@ extends MarginContainer
 @onready var stars = $Stars
 @onready var cords = $Cords
 @onready var blocks = $Blocks
-@onready var constellations = $Constellations
 
-var isle = null
+var vastness = null
 var center = null
 var grids = {}
 var rings = {}
 
 
 func set_attributes(input_: Dictionary) -> void:
-	isle = input_.isle
+	vastness = input_.vastness
 	
 	init_basic_setting()
 
@@ -194,10 +193,12 @@ func add_constellation(dimensions_: int) -> void:
 	for _i in dimensions_:
 		var options = fill_block_options(input.blocks)
 		var block = Global.get_random_key(options)
-		input.blocks.append(block)
+		
+		if block != null:
+			input.blocks.append(block)
 	
 	var constellation = Global.scene.constellation.instantiate()
-	constellations.add_child(constellation)
+	vastness.constellations.add_child(constellation)
 	constellation.set_attributes(input)
 
 

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqlwa55pi1gab"]
+[gd_scene load_steps=3 format=3 uid="uid://bqlwa55pi1gab"]
 
 [ext_resource type="Script" path="res://scene/5/sky.gd" id="1_rdopl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kx57"]
 
 [node name="Sky" type="MarginContainer"]
 anchors_preset = 8
@@ -18,9 +20,10 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 script = ExtResource("1_rdopl")
 
-[node name="BG" type="ColorRect" parent="."]
+[node name="BG" type="Panel" parent="."]
+visible = false
 layout_mode = 2
-color = Color(0.811765, 1, 0.733333, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_1kx57")
 
 [node name="Blocks" type="Node2D" parent="."]
 position = Vector2(10, 0)
@@ -29,7 +32,4 @@ position = Vector2(10, 0)
 position = Vector2(10, 0)
 
 [node name="Stars" type="Node2D" parent="."]
-position = Vector2(10, 0)
-
-[node name="Constellations" type="Node2D" parent="."]
 position = Vector2(10, 0)

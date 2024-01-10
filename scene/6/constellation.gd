@@ -1,7 +1,9 @@
-extends Polygon2D
+extends MarginContainer
 
 
-@onready var index = $Index
+@onready var index = $VBox/Index
+@onready var consumers = $VBox/Consumers
+@onready var suppliers = $VBox/Suppliers
 
 var sky = null
 var blocks = {}
@@ -22,6 +24,7 @@ func init_basic_setting() -> void:
 	update_stars_insulation()
 	update_blocks_insulation()
 	init_index()
+	init_organs()
 
 
 func update_cords_kind() -> void:
@@ -58,7 +61,7 @@ func update_blocks_kind() -> void:
 func update_stars_status() -> void:
 	for block in blocks.total:
 		for star in block.stars:
-			if star.status == "freely":
+			if star.status != "occupied":
 				star.add_constellation(self)
 
 
@@ -81,8 +84,26 @@ func update_blocks_insulation() -> void:
 func init_index() -> void:
 	var input = {}
 	input.type = "number"
-	input.subtype = Global.num.index.star
+	input.subtype = Global.num.index.constellation
 	index.set_attributes(input)
-	Global.num.index.star += 1
+	Global.num.index.constellation += 1
 
+
+func init_organs() -> void:
+	for kind in Global.arr.organ:
+		for block in blocks.total:
+			var _kind = Global.dict.block.organ[block.kind]
+			
+			if _kind == kind:
+				var input = {}
+				input.constellation = self
+				input.block = block
+				var organs = get(kind+"s")
+				
+				var organ = Global.scene.organ.instantiate()
+				organs.add_child(organ)
+				organ.set_attributes(input)
+	
+	for block in blocks.total:
+		block
 

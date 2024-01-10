@@ -51,14 +51,14 @@ func init_index() -> void:
 	Global.num.index.star += 1
 
 
-func add_constellation(constellation_: Polygon2D) -> void:
+func add_constellation(constellation_: MarginContainer) -> void:
 	constellations.append(constellation_)
 	
 	set_status("occupied")
 
 
 func set_status(status_: String) -> void:
-	if status != status_:
+	if status != "occupied":
 		status = status_
 		
 		paint_to_match()

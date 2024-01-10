@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene/3/isle.gd" id="1_mop8t"]
 [ext_resource type="PackedScene" uid="uid://dhfc622s1126i" path="res://scene/4/queue.tscn" id="2_r5x4s"]
 [ext_resource type="PackedScene" uid="uid://hetf20d6go8n" path="res://scene/4/encounter.tscn" id="3_2vasw"]
-[ext_resource type="PackedScene" uid="uid://bqlwa55pi1gab" path="res://scene/5/sky.tscn" id="3_emn8n"]
+[ext_resource type="PackedScene" uid="uid://cv5qkmd5pg33l" path="res://scene/5/vastness.tscn" id="3_jo7y0"]
 [ext_resource type="PackedScene" uid="uid://db27pafnuan3r" path="res://scene/4/podium.tscn" id="4_5jbtg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
@@ -74,7 +74,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Sky" parent="VBox/HBox" instance=ExtResource("3_emn8n")]
+[node name="Vastness" parent="VBox/HBox" instance=ExtResource("3_jo7y0")]
 layout_mode = 2
 
 [node name="Encounter" parent="VBox" instance=ExtResource("3_2vasw")]

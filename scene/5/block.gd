@@ -1,7 +1,8 @@
 extends Polygon2D
 
 
-@onready var index = $Index
+@onready var indexBlock = $IndexBlock
+@onready var indexOrgan = $IndexOrgan
 
 var sky = null
 var stars = []
@@ -11,6 +12,7 @@ var grid = Vector3()
 var kind = null
 var status = null
 var ring = null
+var organ = null
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -33,17 +35,20 @@ func init_basic_setting(input_: Dictionary) -> void:
 	
 	sky.grids.block[grid] = self
 	
-	init_index()
+	init_indexs()
 	set_vertexs()
 	set_status("freely")
 
 
-func init_index() -> void:
+func init_indexs() -> void:
 	var input = {}
 	input.type = "number"
 	input.subtype = Global.num.index.block
-	index.set_attributes(input)
+	indexBlock.set_attributes(input)
 	Global.num.index.block += 1
+	
+	input.subtype = 0
+	indexOrgan.set_attributes(input)
 
 
 func set_vertexs() -> void:
@@ -52,13 +57,14 @@ func set_vertexs() -> void:
 	for star in stars:
 		var vertex = star.position
 		vertexs.append(vertex)
-		index.position += vertex
+		indexBlock.position += vertex
 	
 	set_polygon(vertexs)
 	
-	index.position /= stars.size()
-	index.position.x -= index.custom_minimum_size.x * 0.5
-	index.position.y -= index.custom_minimum_size.y * 0.75
+	indexBlock.position /= stars.size()
+	indexBlock.position.x -= indexBlock.custom_minimum_size.x * 0.5
+	indexBlock.position.y -= indexBlock.custom_minimum_size.y * 0.75
+	indexOrgan.position = indexBlock.position
 
 
 func set_status(status_: String) -> void:
@@ -96,3 +102,14 @@ func update_kind() -> void:
 		_kind = "decor"
 	
 	set_kind(_kind)
+
+
+func switch_indexs() -> void:
+	indexBlock.visible = !indexBlock.visible
+	indexOrgan.visible = !indexOrgan.visible
+
+
+func set_organ(organ_: MarginContainer) -> void:
+	organ = organ_
+	indexOrgan.visible = true
+	indexOrgan.set_number(organ.index.get_number())

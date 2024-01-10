@@ -11,7 +11,7 @@ extends MarginContainer
 @onready var podium = $VBox/Podium
 @onready var regions = $VBox/HBox/Regions
 @onready var towers = $VBox/HBox/Towers
-@onready var sky = $VBox/HBox/Sky
+@onready var vastness = $VBox/HBox/Vastness
 @onready var timer = $Timer
 
 var continent = null
@@ -32,7 +32,7 @@ func set_attributes(input_: Dictionary) -> void:
 	
 	var input = {}
 	input.isle = self
-	sky.set_attributes(input)
+	vastness.set_attributes(input)
 
 
 func init_locations() -> void:

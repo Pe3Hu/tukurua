@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnqwjdpy5q073"]
+[gd_scene load_steps=4 format=3 uid="uid://cv5qkmd5pg33l"]
 
-[ext_resource type="Script" path="res://scene/6/constellation.gd" id="1_471y7"]
-[ext_resource type="PackedScene" uid="uid://ciw38iqel0v5a" path="res://scene/0/icon.tscn" id="2_lp44s"]
+[ext_resource type="PackedScene" uid="uid://bqlwa55pi1gab" path="res://scene/5/sky.tscn" id="1_lj7iv"]
+[ext_resource type="Script" path="res://scene/5/vastness.gd" id="1_q3gni"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
-[node name="Constellation" type="MarginContainer"]
+[node name="Vastness" type="MarginContainer"]
 custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_471y7")
+script = ExtResource("1_q3gni")
 
 [node name="BG" type="Panel" parent="."]
 layout_mode = 2
@@ -28,18 +28,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
 [node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Index" parent="VBox" instance=ExtResource("2_lp44s")]
+[node name="HBox" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
-
-[node name="Consumers" type="VBoxContainer" parent="VBox"]
-layout_mode = 2
-theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Suppliers" type="VBoxContainer" parent="VBox"]
+[node name="Sky" parent="VBox/HBox" instance=ExtResource("1_lj7iv")]
+layout_mode = 2
+
+[node name="Constellations" type="HBoxContainer" parent="VBox/HBox"]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
